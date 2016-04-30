@@ -1,0 +1,2 @@
+C:\girig\CheckServiceAvailabilityApp\CheckServiceAvailabilityApp\bin\Microsoft.NodejsTools.WebRole.dll
+C:\girig\CheckServiceAvailabilityApp\CheckServiceAvailabilityApp\obj\Release\CheckServiceAvailabilityApp.njsprojResolveAssemblyReference.cache
