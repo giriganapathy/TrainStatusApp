@@ -48,9 +48,9 @@ bot.add("/", [
     }
 ]);
 var server = restify.createServer();
-//server.use(bot.verifyBotFramework({ "appId": process.env.appId, "appSecret": process.env.appSecret }));
+server.use(bot.verifyBotFramework());
 server.post("/api/messages", bot.listen());
-server.listen(8080, function () {
+server.listen(process.env.port || 3978, function () {
     console.log("%s listening to %s", server.name, server.url);
 });
 //# sourceMappingURL=server.js.map
