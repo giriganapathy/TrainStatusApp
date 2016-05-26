@@ -11,6 +11,7 @@ var key = "embct6154";
 var dialog = new builder.LuisDialog(model);
 var bot = new builder.BotConnectorBot(); //new builder.TextBot();
 bot.add("/", dialog);
+dialog.onDefault(builder.DialogAction.send("I'm sorry. I didn't understand."));
 dialog.on("intent.pnr.enquiry", [
     function (session, args, next) {
         var entity = builder.EntityRecognizer.findEntity(args.entities, 'pnr-number');
