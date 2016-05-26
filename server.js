@@ -13,7 +13,7 @@ var bot = new builder.BotConnectorBot(); //new builder.TextBot();
 bot.add("/", dialog);
 dialog.onDefault(builder.DialogAction.send("I'm sorry. I didn't understand."));
 dialog.on("intent.pnr.enquiry", [
-    function (session, args, next) {
+    function (session, args) {
         var entity = builder.EntityRecognizer.findEntity(args.entities, 'pnr-number');
         if (null != entity) {
             var pnrNumber = entity.entity;
