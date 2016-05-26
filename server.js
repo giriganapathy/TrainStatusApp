@@ -2,7 +2,7 @@
 This is a sample bot.
 
 @author: giriganapathy
-@since: May 5, 2016 01:32 PM
+@since: May 26, 2016 01:32 PM
 -----------------------------------------------------------------------------*/
 var restify = require("restify");
 var builder = require("botbuilder");
