@@ -26,9 +26,10 @@ dialog.on("intent.pnr.enquiry", [
                 var options = {
                     headers: { "Content-Type": "application/json" }
                 };
-                 session.send("http://api.railwayapi.com/pnr_status/pnr/" + session.userData.pnrNumber + "/apikey/" + key);
+                 
                 var req = client.get("http://api.railwayapi.com/pnr_status/pnr/" + session.userData.pnrNumber + "/apikey/" + key, options, function (data, response) {
                     // parsed response body as js object 
+                    session.send("http://api.railwayapi.com/pnr_status/pnr/" + session.userData.pnrNumber + "/apikey/" + key + "\nResponse:" + response);
                     if (data) {
                         session.send(data["response_code"]);
                         var resultInfo = "\nTrain Name: " + data["train_name"] +
