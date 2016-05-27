@@ -28,6 +28,7 @@ dialog.on("intent.pnr.enquiry", [
                 client.get("http://api.railwayapi.com/pnr_status/pnr/" + session.userData.pnrNumber + "/apikey/" + key, options, function (data, response) {
                     // parsed response body as js object 
                     if (data) {
+                        session.send(data["response_code"]);
                         var resultInfo = "\nTrain Name: " + data["train_name"] +
                             "\nFrom Station: " + data["from_station"]["name"] +
                             "\To Station: " + data["to_station"]["name"] +
