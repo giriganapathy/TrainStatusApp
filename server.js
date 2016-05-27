@@ -51,6 +51,7 @@ dialog.on("intent.train.enquiry", [
                             var route = routes[idx];
                             stationInfo = stationInfo + route["no"] + "|" + route["station_"]["name"] + "|" + route["actarr"] + "|" + route["actdep"] + "|" + route["actarr_date"] + "\n";
                         }
+                        stationInfo = stationInfo + data["position"];
                     }
                     session.send(stationInfo);
                 }
