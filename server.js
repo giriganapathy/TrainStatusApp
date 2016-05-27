@@ -44,14 +44,14 @@ dialog.on("intent.train.enquiry", [
                     var routes = data["route"];
                     if (null != routes) {
 
-                        stationInfo = stationInfo + "Point | Station | Arrival | Departure | Date\n";
+                        stationInfo = stationInfo + "Point | Station | Arr | Dep | Date\n";
                         stationInfo = stationInfo + "------------ | ------------- | -------------| -------------| -------------\n";
 
                         for (var idx = 0; idx < routes.length; idx++) {
                             var route = routes[idx];
                             stationInfo = stationInfo + route["no"] + "|" + route["station_"]["name"] + "|" + route["actarr"] + "|" + route["actdep"] + "|" + route["actarr_date"] + "\n";
                         }
-                        stationInfo = stationInfo + data["position"];
+                        stationInfo = stationInfo + "\n" + data["position"];
                     }
                     session.send(stationInfo);
                 }
