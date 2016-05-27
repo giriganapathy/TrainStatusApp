@@ -34,8 +34,8 @@ dialog.on("intent.pnr.enquiry", [
                         //session.send(data["response_code"]);
                         var resultInfo = "\nTrain Name: " + data["train_name"] +
                             "\nFrom Station: " + data["from_station"]["name"] +
-                            "\To Station: " + data["to_station"]["name"] +
-                            "\Date Of Journey: " + data["doj"];
+                            "\nTo Station: " + data["to_station"]["name"] +
+                            "\nDate Of Journey: " + data["doj"];
                         session.send(resultInfo);
                     }
                     else {
