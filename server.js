@@ -26,7 +26,7 @@ dialog.on("intent.pnr.enquiry", [
                 var options = {
                     headers: { "Content-Type": "application/json" }
                 };
-                client.get("http://api.railwayapi.com/pnr_status/pnr/" + session.userData.pnrNumber + "/apikey/" + key, options, function (data, response) {
+                var req = client.get("http://api.railwayapi.com/pnr_status/pnr/" + session.userData.pnrNumber + "/apikey/" + key, options, function (data, response) {
                     // parsed response body as js object 
                     if (data) {
                         session.send(data["response_code"]);
@@ -40,6 +40,9 @@ dialog.on("intent.pnr.enquiry", [
                         session.send("Sorry! Information not available...");
                         delete session.userData.pnrNumber;
                     }
+                });
+                req.on("error", function(err) {
+                    session.send("Error:" + err);
                 });
             }
             else {
