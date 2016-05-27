@@ -16,6 +16,7 @@ dialog.on("intent.pnr.enquiry", [
     function (session, args) {
         var entity = builder.EntityRecognizer.findEntity(args.entities, 'pnr-number');
         if (null != entity) {
+            session.send(entity.entity);
             var pnrNumber = entity.entity;
             if (null != pnrNumber) {
                 session.userData.pnrNumber = pnrNumber;
