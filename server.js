@@ -41,11 +41,11 @@ dialog.on("intent.pnr.enquiry", [
                 });
             }
             else {
-                session.send("Please provide your PNR Number...");
+                session.send("1 Please provide your PNR Number...");
             }
         }
         else {
-            session.send("Please provide your PNR Number...");
+            session.send("2 Please provide your PNR Number...");
         }
     }
 ]);
