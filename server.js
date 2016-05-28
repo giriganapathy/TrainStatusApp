@@ -1,5 +1,5 @@
 /*-----------------------------------------------------------------------------
-This is a sample bot to provide details related to Trains.
+This is a sample bot.
 
 @author: giriganapathy
 @since: May 26, 2016 01:32 PM
@@ -24,6 +24,16 @@ bot.configure({
 
 dialog.onDefault(builder.DialogAction.send("I'm sorry. I didn't understand."));
 
+dialog.onBegin(function (session, args, next) {
+    if (!session.userData.firstRun) {
+        // Send the user through the first run experience
+        session.userData.firstRun = true;
+        session.send(helpInfo.helpMessage);
+        session.beginDialog('/');        
+    } else {
+        next();
+    }
+});
 
 dialog.on("intent.doj", [
     function (session, args) {
@@ -58,7 +68,7 @@ dialog.on("intent.doj", [
                     var routes = data["route"];
                     if (null != routes) {
 
-                        stationInfo = stationInfo + "Point | Station | Arrival | Departure | Date\n";
+                        stationInfo = stationInfo + "Point | Station | Arr. | Dep. | Date\n";
                         stationInfo = stationInfo + "------------ | ------------- | -------------| -------------| -------------\n";
 
                         for (var idx = 0; idx < routes.length; idx++) {
@@ -131,7 +141,7 @@ dialog.on("intent.train.enquiry", [
                             var routes = data["route"];
                             if (null != routes) {
 
-                                stationInfo = stationInfo + "Point | Station | Arrival | Departure | Date\n";
+                                stationInfo = stationInfo + "Point | Station | Arr. | Dep. | Date\n";
                                 stationInfo = stationInfo + "------------ | ------------- | -------------| -------------| -------------\n";
 
                                 for (var idx = 0; idx < routes.length; idx++) {
@@ -185,10 +195,9 @@ dialog.on("intent.pnr.enquiry", [
                     //session.send("http://api.railwayapi.com/pnr_status/pnr/" + session.userData.pnrNumber + "/apikey/" + key + "\nResponse:" + response + "\nData:" + data);
                     if (data) {
                         //session.send(data["response_code"]);
-                        var resultInfo = "\nTrain Name: " + data["train_name"] +
-                            "\nFrom Station: " + data["from_station"]["name"] +
-                            "\nTo Station: " + data["to_station"]["name"] +
-                            "\nDate Of Journey: " + data["doj"];
+                        var resultInfo = "Train Name | From | To. | Date of Journey\n";
+                        resultInfo = resultInfo + "------------ | ------------- | -------------| -------------\n";
+                        resultInfo = resultInfo + data["train_name"] + "|" + data["from_station"]["name"] + "|" + data["to_station"]["name"] + "|" + data["doj"];
                         session.send(resultInfo);
                     }
                     else {
