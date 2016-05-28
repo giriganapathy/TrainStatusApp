@@ -29,7 +29,7 @@ dialog.onBegin(function (session, args, next) {
         // Send the user through the first run experience
         session.userData.firstRun = true;
         session.send(helpInfo.helpMessage);
-        session.beginDialog('/');        
+        //session.beginDialog('/');        
     } else {
         next();
     }
