@@ -195,9 +195,14 @@ dialog.on("intent.pnr.enquiry", [
                     //session.send("http://api.railwayapi.com/pnr_status/pnr/" + session.userData.pnrNumber + "/apikey/" + key + "\nResponse:" + response + "\nData:" + data);
                     if (data) {
                         //session.send(data["response_code"]);
-                        var resultInfo = "Train Name | From | To. | Date of Journey\n";
-                        resultInfo = resultInfo + "------------ | ------------- | -------------| -------------\n";
-                        resultInfo = resultInfo + data["train_name"] + "|" + data["from_station"]["name"] + "|" + data["to_station"]["name"] + "|" + data["doj"];
+                        var passengerStatus = "";
+                        for(var passenger of data["passengers"]) {
+                            passengerStatus = passengerStatus + passenger["no"] + ". " + passenger["booking_status"] + ":" + passenger["current_status"] + "\n";
+                        }
+
+                        var resultInfo = "Train Name | From | To. | Date of Journey | Status\n";
+                        resultInfo = resultInfo + "------------ | ------------- | -------------| -------------|------------------\n";
+                        resultInfo = resultInfo + data["train_name"] + "|" + data["from_station"]["name"] + "|" + data["to_station"]["name"] + "|" + data["doj"] + "|" + passengerStatus;
                         session.send(resultInfo);
                     }
                     else {
