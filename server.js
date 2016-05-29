@@ -8,14 +8,12 @@ var restify = require("restify");
 var builder = require("botbuilder");
 var model = process.env.model || "https://api.projectoxford.ai/luis/v1/application?id=83b0d263-bcb7-4ded-b197-95b25ee68030&subscription-key=b27a7109bc1046fb9cc7cfa874e3f819&q=";
 
-/*var helpInfo = {
+var helpInfo = {
     helpMessage: "Here's what you can check with me:\n\n" +
     "* Status of pnr <pnr-number>\n" +
     "* Status of train <train-number>\n"
 };
 
-delete session.userData.firstRun;
-*/
 
 var dialog = new builder.LuisDialog(model);
 var bot = new builder.BotConnectorBot(); //new builder.TextBot();
@@ -25,19 +23,19 @@ bot.add("/", dialog);
     goodbyeMessage: "Goodbye..."
 });*/
 
-dialog.onDefault(builder.DialogAction.send("I'm sorry. I didn't understand."));
-/*
+//dialog.onDefault(builder.DialogAction.send("I'm sorry. I didn't understand."));
+
 dialog.onBegin(function (session, args, next) {
     if (!session.userData.firstRun) {
         // Send the user through the first run experience
         session.userData.firstRun = true;
         session.send(helpInfo.helpMessage);
-        //session.beginDialog('/');        
+        session.beginDialog('/');        
     } else {
         next();
     }
 });
-*/
+
 dialog.on("intent.doj", [
     function (session, args) {
         if (!session.userData.trainNumber) {
