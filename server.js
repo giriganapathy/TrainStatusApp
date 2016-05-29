@@ -14,6 +14,8 @@ var helpInfo = {
     "* Status of train <train-number>\n"
 };
 
+delete session.userData.firstRun;
+
 var dialog = new builder.LuisDialog(model);
 var bot = new builder.BotConnectorBot(); //new builder.TextBot();
 bot.add("/", dialog);
